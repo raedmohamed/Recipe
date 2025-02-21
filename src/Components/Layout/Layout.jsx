@@ -10,6 +10,10 @@ function Layout() {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  const closeSidebar = () => {
+    if (isSidebarOpen) setIsSidebarOpen(false);
+  };
+
   return (
     <div className={style.mainLayout}>
       <SideBar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
@@ -17,8 +21,15 @@ function Layout() {
         className={`${style.rightSide} ${
           isSidebarOpen ? style.open : style.close
         }`}
+        onClick={closeSidebar}
       >
-        <button className={style.menuBtn} onClick={toggleSidebar}>
+        <button
+          className={style.menuBtn}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleSidebar();
+          }}
+        >
           <i className="fa-solid fa-bars" />
         </button>
         <Outlet />
