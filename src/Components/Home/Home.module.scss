@@ -1,0 +1,133 @@
+@use "../../Styles/variables" as *;
+
+@mixin text-gradient($start-color, $end-color) {
+  background: linear-gradient(180deg, $start-color, $end-color);
+  background-clip: text !important;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.header {
+  margin-bottom: 2rem;
+
+  p {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    @include text-gradient($primary-color, #f44336);
+    margin: 0;
+    text-align: left;
+  }
+}
+
+.categories {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.categoryButton {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid $primary-color;
+  border-radius: 25px;
+  background-color: transparent;
+  font-size: 1rem;
+  color: $primary-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  &.active {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-top: 2rem;
+}
+
+.mealsGrid {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.mealCard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.05); // هنا حصل scale بدل translateY
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .imageContainer {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover .imageContainer img {
+    transform: rotate(360deg);
+  }
+
+  h3 {
+    padding: 1rem;
+    font-size: 1.4rem;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    margin-top: 100px;
+  }
+
+  .mealOrigin {
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #777;
+    text-align: center;
+    margin: 0;
+  }
+
+  .detailsButton {
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: $secondary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}
